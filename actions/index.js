@@ -37,8 +37,9 @@ const MOVIE_DATA = [
 export const getMovies = () => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-        console.log('ok');
+      // debugger
       resolve(MOVIE_DATA)
+      // reject("Cannoct fecth data!")
     }, 2000);
   });
 };

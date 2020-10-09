@@ -31,7 +31,14 @@ function MyApp({ Component, pageProps }) {
         ></script>
       </Head>
       <Navbar />
+      <div className="base-page">
       <Component {...pageProps} />
+      </div>
+      <style jsx>{`
+        .base-page {
+          padding-top: 90px;
+        }
+      `}</style>
       <Footer />
     </div>
   );

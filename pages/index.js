@@ -2,7 +2,7 @@ import SideMenu from "../components/sideMenu";
 import Carousel from "../components/carousel";
 import MovieList from "../components/movieList";
 import React, { useState, useEffect } from "react";
-import { getMovies } from "../actions/index";
+import { getMovies, getCategories } from "../actions/index";
 
 const Home = (props) => {
   return (
@@ -11,11 +11,11 @@ const Home = (props) => {
         <div className="container">
           <div className="row">
             <div className="col-lg-3">
-              <SideMenu appName={"Movie List"} />
+              <SideMenu appName={"Movie List"} categories={props.categories} />
             </div>
 
             <div className="col-lg-9">
-              <Carousel />
+              <Carousel images={props.images} />
 
               <div className="row">
                 <MovieList movies={props.movies} />
@@ -24,27 +24,25 @@ const Home = (props) => {
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        .home-page {
-          padding-top: 90px;
-        }
-
-        
-      `}</style>
-
     </div>
   );
 };
 
-
 Home.getInitialProps = async () => {
   const movies = await getMovies();
-    
+  const categories = await getCategories()
+  const images = movies.map((movie) => ({
+    id: `image-${movie.id}`,
+    url: movie.cover,
+    name: movie.name
+  }));
+
   return {
-    movies
-  }
-}
+    movies,
+    categories,
+    images,
+  };
+};
 
 // class Home extends React.Component {
 
@@ -55,7 +53,6 @@ Home.getInitialProps = async () => {
 //       movies
 //     }
 //   }
-
 
 //   // constructor(props) {
 //   //   super(props);

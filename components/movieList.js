@@ -1,4 +1,6 @@
 import React from "react";
+import Link from "next/link";
+
 import { render } from "react-dom";
 
 class MovieList extends React.Component {
@@ -29,7 +31,7 @@ class MovieList extends React.Component {
   //     })
   // }
 
-  shorten = (text , maxLength) => {
+  shorten = (text, maxLength) => {
     if (text && text.length > maxLength) {
       return text.substr(0, maxLength) + "...";
     }
@@ -40,19 +42,26 @@ class MovieList extends React.Component {
     return movies.map((movie, key) => (
       <div className="col-lg-4 col-md-6 mb-4" key={movie.id}>
         <div className="card h-100">
-          <a href="#">
+          <a href="/movies/[id]" as={`/movies/${movie.id}`}>
             <img className="card-img-top" src={movie.image} alt="" />
           </a>
           <div className="card-body">
             <h4 className="card-title">
-              <a href="#">{movie.name}</a>
+              <Link href="/movies/[id]" as={`/movies/${movie.id}`}>
+                <a >{movie.name}</a>
+              </Link>
             </h4>
-            <p className="card-text">{this.shorten(movie.description , 100)}</p>
+            <p className="card-text">{this.shorten(movie.description, 100)}</p>
           </div>
           <div className="card-footer">
             <small className="text-muted">{movie.rating}</small>
           </div>
         </div>
+    <style jsx>{`
+        .card-img-top{
+          max-height : 130px
+        }
+    `}</style>
       </div>
     ));
   }

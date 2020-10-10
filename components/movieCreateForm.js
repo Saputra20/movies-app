@@ -3,8 +3,13 @@ import { useState } from "react";
 const movieCreateForm = (props) => {
   const { categories } = props;
   const [form, setForm] = useState({
-    name: "Some movie",
-    description: "Some movies",
+    name: "",
+    description: "",
+    rating: "",
+    releaseYear : "",
+    image: "",
+    cover: "",
+    longDesc: ""
   });
 
   const handleChange = (event) => {
@@ -34,15 +39,17 @@ const movieCreateForm = (props) => {
     });
   };
 
+  const submitForm = () => {
+      props.handleFormSubmit({...form})
+  };
+
   return (
     <div>
-      {JSON.stringify(form)}
       <form>
         <div className="form-group">
           <label htmlFor="name">Name</label>
           <input
             onChange={handleChange}
-            value={form.name}
             name="name"
             type="text"
             className="form-control"
@@ -55,7 +62,6 @@ const movieCreateForm = (props) => {
           <label htmlFor="description">Description</label>
           <input
             onChange={handleChange}
-            value={form.description}
             name="description"
             type="text"
             className="form-control"
@@ -67,7 +73,6 @@ const movieCreateForm = (props) => {
           <label htmlFor="description">Rating</label>
           <input
             onChange={handleChange}
-            value={form.rating}
             name="rating"
             type="number"
             max="5"
@@ -84,7 +89,6 @@ const movieCreateForm = (props) => {
           <label htmlFor="image">Image</label>
           <input
             onChange={handleChange}
-            value={form.image}
             name="image"
             type="text"
             className="form-control"
@@ -96,7 +100,6 @@ const movieCreateForm = (props) => {
           <label htmlFor="cover">Cover</label>
           <input
             onChange={handleChange}
-            value={form.cover}
             name="cover"
             type="text"
             className="form-control"
@@ -108,7 +111,6 @@ const movieCreateForm = (props) => {
           <label htmlFor="longDesc">Long Description</label>
           <textarea
             onChange={handleChange}
-            value={form.longDesc}
             name="longDesc"
             className="form-control"
             id="longDesc"
@@ -119,21 +121,21 @@ const movieCreateForm = (props) => {
           <label htmlFor="genre">Genre</label>
           <select
             onChange={handleGenreChange}
-            value={form.genre}
             name="genre"
             multiple
             className="form-control"
             id="genre"
           >
             {categories.map((category) => (
-              <option key={category.id} value={category.name}>{category.name}</option>
+              <option key={category.id} value={category.name}>
+                {category.name}
+              </option>
             ))}
-            {/* <option>music</option>
-            <option>adventure</option>
-            <option>historical</option>
-            <option>action</option> */}
           </select>
         </div>
+        <button onClick={submitForm} type="button" className="btn btn-primary">
+          Create Movie
+        </button>
       </form>
     </div>
   );

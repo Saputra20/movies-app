@@ -16,7 +16,7 @@ const Carousel = (props) => {
             data-target="#carouselExampleIndicators"
             data-slide-to={index}
             className={index === 0 ? "active" : " "}
-        >{index}</li>
+        ></li>
         ))}
       </ol>
       <div className="carousel-inner" role="listbox">

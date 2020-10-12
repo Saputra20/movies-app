@@ -1,16 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const movieCreateForm = (props) => {
   const { categories } = props;
-  const [form, setForm] = useState({
-    name: "",
-    description: "",
-    rating: "",
-    releaseYear : "",
-    image: "",
-    cover: "",
-    longDesc: ""
-  });
+
+  const defaultData = {
+    name: '',
+    description: '',
+    rating: '',
+    image: '',
+    cover: '',
+    longDesc: ''
+  }
+
+  const formData = props.initialData ? {...props.initialData} : defaultData
+
+  const [form, setForm] = useState(formData)
+
+  console.log(props.initalData);
+  console.log(form);
 
   const handleChange = (event) => {
     const target = event.target;
@@ -40,7 +47,7 @@ const movieCreateForm = (props) => {
   };
 
   const submitForm = () => {
-      props.handleFormSubmit({...form})
+    props.handleFormSubmit({ ...form });
   };
 
   return (
@@ -51,6 +58,7 @@ const movieCreateForm = (props) => {
           <input
             onChange={handleChange}
             name="name"
+            value={form.name}
             type="text"
             className="form-control"
             id="name"
@@ -62,6 +70,7 @@ const movieCreateForm = (props) => {
           <label htmlFor="description">Description</label>
           <input
             onChange={handleChange}
+            value={form.description}
             name="description"
             type="text"
             className="form-control"
@@ -73,6 +82,7 @@ const movieCreateForm = (props) => {
           <label htmlFor="description">Rating</label>
           <input
             onChange={handleChange}
+            value={form.rating}
             name="rating"
             type="number"
             max="5"
@@ -89,6 +99,7 @@ const movieCreateForm = (props) => {
           <label htmlFor="image">Image</label>
           <input
             onChange={handleChange}
+            value={form.image}
             name="image"
             type="text"
             className="form-control"
@@ -100,6 +111,7 @@ const movieCreateForm = (props) => {
           <label htmlFor="cover">Cover</label>
           <input
             onChange={handleChange}
+            value={form.cover}
             name="cover"
             type="text"
             className="form-control"
@@ -111,6 +123,7 @@ const movieCreateForm = (props) => {
           <label htmlFor="longDesc">Long Description</label>
           <textarea
             onChange={handleChange}
+            value={form.longDesc}
             name="longDesc"
             className="form-control"
             id="longDesc"

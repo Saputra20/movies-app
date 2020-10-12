@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "http://localhost:3333";
 const MOVIE_DATA = [];
 
 const CATEGORY_DATA = [

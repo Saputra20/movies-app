@@ -1,4 +1,5 @@
 const fs = require("fs");
+const path = require('path');
 const movies = require("../../../../server/data.json");
 
 export default async (req, res) => {
@@ -35,7 +36,8 @@ export default async (req, res) => {
         const movie = req.body;
         movies.push(movie);
 
-        const pathToFile = "D:/Learning/NextJs/movies-app/server/data.json";
+        // const pathToFile = "D:/Learning/NextJs/movies-app/server/data.json";
+        const pathToFile = "D:/My Project/next/movie-app/server/data.json";
         const stringifiedData = JSON.stringify(movies, null, 2);
 
         fs.writeFile(pathToFile, stringifiedData, (err) => {

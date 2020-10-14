@@ -35,7 +35,7 @@ class EditMovie extends React.Component {
         <h1>Edit The Movie</h1>
         <MovieCreateForm
           categories={this.props.categories}
-          initalData={movie}
+          initialData={movie}
         />
       </div>
     );
